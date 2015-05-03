@@ -1,0 +1,12 @@
+{
+  "name": "prettyforms-laravel5-app",
+  "version": "0.1.0",
+  "authors": [
+    "Akhmadullin Roman <freeman.aka.ahmed@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "sweetalert": "~0.5.0",
+    "prettyforms": "~0.2.7"
+  }
+}
