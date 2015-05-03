@@ -6,7 +6,6 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "sweetalert": "~0.5.0",
-    "prettyforms": "~0.2.7"
+    "prettyforms": "~1.0.0"
   }
 }

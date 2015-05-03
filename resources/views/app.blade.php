@@ -90,8 +90,8 @@
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
     
-	<link href="{{ asset('/bower/sweetalert/lib/sweet-alert.css') }}" rel="stylesheet">
-	<script src="{{ asset('/bower/sweetalert/lib/sweet-alert.js') }}"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/0.5.0/sweet-alert.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/0.5.0/sweet-alert.min.js"></script>
 
     <link href="{{ asset('/bower/prettyforms/prettyforms.css') }}" rel="stylesheet">
 	<script src="{{ asset('/bower/prettyforms/prettyforms.js') }}"></script>

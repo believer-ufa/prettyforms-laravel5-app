@@ -1,6 +1,6 @@
 {
   "name": "prettyforms",
-  "version": "0.2.7",
+  "version": "1.0.0",
   "homepage": "https://github.com/believer-ufa/prettyforms",
   "authors": [
     "Roman Akhmadullin <freeman.aka.ahmed@gmail.com>"
@@ -28,13 +28,14 @@
   "dependencies": {
     "jquery": ">= 1.9.0"
   },
-  "_release": "0.2.7",
+  "_release": "1.0.0",
   "_resolution": {
     "type": "version",
-    "tag": "v0.2.7",
-    "commit": "8cb052d345b368fb5b1a3ac138c37257a0521a94"
+    "tag": "v1.0.0",
+    "commit": "8fc91e230718fa1ece8882ecc8659122853b053c"
   },
   "_source": "git://github.com/believer-ufa/prettyforms.git",
-  "_target": "~0.2.7",
-  "_originalSource": "prettyforms"
+  "_target": "~1.0.0",
+  "_originalSource": "prettyforms",
+  "_direct": true
 }
