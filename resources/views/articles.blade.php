@@ -23,12 +23,16 @@
                     <td><a  href="{{action('Articles@getShow',$article->id) }}">{{ $article->title }}</a></td>
                     <td>{{ $article->user->name }}</td>
                     <td>
-                        @if ($article->trashed())
-                            <div class="btn btn-default btn-xs senddata" href="/articles/restore/{{$article->id}}">Восстановить статью</div>
-                            <div class="btn btn-default btn-xs senddata really" data-link="/articles/force-delete/{{$article->id}}">Удалить полностью</div>
+                        @if ($article->user_id == Auth::user()->id)
+                            @if ($article->trashed())
+                                <div class="btn btn-default btn-xs senddata" href="/articles/restore/{{$article->id}}">Восстановить статью</div>
+                                <div class="btn btn-default btn-xs senddata really" data-link="/articles/force-delete/{{$article->id}}">Удалить полностью</div>
+                            @else
+                                <a class="btn btn-default btn-xs" href="/articles/save/{{$article->id}}">Редактировать</a>
+                                <div class="btn btn-default btn-xs senddata really" data-link="/articles/delete/{{$article->id}}">Удалить</div>
+                            @endif
                         @else
-                            <a class="btn btn-default btn-xs" href="/articles/save/{{$article->id}}">Редактировать</a>
-                            <div class="btn btn-default btn-xs senddata really" data-link="/articles/delete/{{$article->id}}">Удалить</div>
+                            <small>У вас прав на редактирование этой статьи</small>
                         @endif
                     </td>
                 </tr>
