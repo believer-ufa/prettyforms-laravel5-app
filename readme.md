@@ -12,7 +12,12 @@ git clone git@github.com:believer-ufa/prettyforms-laravel5-app.git
 sudo apt-get install -y php5-sqlite
 ```
 
-Запустите тестовое приложение и начинайте его изучение:
+Установите все зависимости приложения через Composer:
+```bash
+composer install
+```
+
+И, наконец, запустите тестовое приложение и начинайте его изучение:
 ```bash
 ./artisan serve
 ```
