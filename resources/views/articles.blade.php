@@ -32,7 +32,7 @@
                                 <div class="btn btn-default btn-xs senddata really" data-link="/articles/delete/{{$article->id}}">Удалить</div>
                             @endif
                         @else
-                            <small>У вас прав на редактирование этой статьи</small>
+                            <small>У вас нет прав на редактирование этой статьи</small>
                         @endif
                     </td>
                 </tr>
