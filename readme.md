@@ -1,27 +1,48 @@
-## Laravel PHP Framework
+## An example of the application on the basis of PrettyForms
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+### Install and run
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+To run the sample application, first clone it to your computer:
+```bash
+git clone git@github.com:believer-ufa/prettyforms-laravel5-app.git
+```
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+After application get cloned, install a `PHP SQLite` component, for example, by entering the following command:
+```bash
+sudo apt-get install -y php5-sqlite
+```
 
-## Official Documentation
+Install all the dependencies the application through the Composer:
+```bash
+composer install
+```
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+Finally, start the test application and start to study it:
+```bash
+./artisan serve
+```
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+## Пример приложения на основе PrettyForms
 
-## Security Vulnerabilities
+### Установка и запуск
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Для того, чтобы запустить тестовое приложение, первым делом склонируйте его на свой компьютер:
+```bash
+git clone git@github.com:believer-ufa/prettyforms-laravel5-app.git
+```
 
-### License
+После того, как приложение склонируется, установите на ваш комьпютер модуль `PHP SQLite`, например, через ввод следующей команды:
+```bash
+sudo apt-get install -y php5-sqlite
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+Установите все зависимости приложения через Composer:
+```bash
+composer install
+```
+
+И, наконец, запустите тестовое приложение и начинайте его изучение:
+```bash
+./artisan serve
+```

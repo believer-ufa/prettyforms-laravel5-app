@@ -33,8 +33,7 @@
                             <div class="btn btn-default btn-xs senddata" href="/articles/restore/{{$article->id}}">Восстановить статью</div>
                             <div class="btn btn-default btn-xs senddata really" data-link="/articles/force-delete/{{$article->id}}">Удалить полностью</div>
                         @else
-                            <a class="btn btn-default btn-xs" href="/articles/save/{{$article->id}}">Редактировать</a>
-                            <div class="btn btn-default btn-xs senddata really" data-link="/articles/delete/{{$article->id}}">Удалить</div>
+                            <small>У вас нет прав на редактирование этой статьи</small>
                         @endif
                     </td>
                 </tr>
