@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Laravel</title>
 
-	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/app.css', true) }}" rel="stylesheet">
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -90,11 +90,11 @@
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
     
-	<link href="{{ asset('/bower/sweetalert/lib/sweet-alert.css') }}" rel="stylesheet">
-	<script src="{{ asset('/bower/sweetalert/lib/sweet-alert.js') }}"></script>
+	<link href="{{ asset('/bower/sweetalert/lib/sweet-alert.css', true) }}" rel="stylesheet">
+	<script src="{{ asset('/bower/sweetalert/lib/sweet-alert.js', true) }}"></script>
 
-    <link href="{{ asset('/bower/prettyforms/prettyforms.css') }}" rel="stylesheet">
-	<script src="{{ asset('/bower/prettyforms/prettyforms.js') }}"></script>
+    <link href="{{ asset('/bower/prettyforms/prettyforms.css', true) }}" rel="stylesheet">
+	<script src="{{ asset('/bower/prettyforms/prettyforms.js', true) }}"></script>
     
     <script>
         $.ajaxSetup({

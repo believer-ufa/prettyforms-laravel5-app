@@ -15,6 +15,7 @@
                     <tr>
                         <th>Наименование</th>
                         <th>Владелец</th>
+                        <th>Сортировка</th>
                         <th>Управление</th>
                     </tr>
                 </thead>
@@ -22,6 +23,11 @@
                 <tr <?php if ($article->trashed()) { ?> class="text-muted" <?php } ?>>
                     <td><a  href="{{action('Articles@getShow',$article->id) }}">{{ $article->title }}</a></td>
                     <td>{{ $article->user->name }}</td>
+                    <td>
+                        {{ $article->order }}
+                        <div class="btn btn-default btn-xs senddata" data-link="/articles/up/{{$article->id}}">Вверх</div>
+                        <div class="btn btn-default btn-xs senddata" data-link="/articles/down/{{$article->id}}">Вниз</div>
+                    </td>
                     <td>
                         @if ($article->trashed())
                             <div class="btn btn-default btn-xs senddata" href="/articles/restore/{{$article->id}}">Восстановить статью</div>

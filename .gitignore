@@ -1,4 +1,7 @@
 /vendor
 /node_modules
 /nbproject
+/storage/database.sqlite
+/vendor-static
+/public/admin-database.php
 _ide_helper.php

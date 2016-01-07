@@ -11,6 +11,7 @@ class Articles extends Controller {
 	}
 
     protected $_model_name = 'App\Article';
+    protected $_form_params = [ 'order' ];
     protected $fields = [
         'title'     => [
             'tag'        => 'input',
@@ -73,7 +74,7 @@ class Articles extends Controller {
     
     public function getIndex() {
         $view = view('articles');
-        $view->articles = Article::withTrashed()->paginate(15);
+        $view->articles = Article::withTrashed()->orderBy('order')->paginate(15);
         return $view;
     }
     
@@ -109,6 +110,16 @@ class Articles extends Controller {
     function postForceDelete() {
         $this->checkAccess();
         return $this->defaultForceDeleteLogic();
+    }
+    
+    function postUp($id) {
+        $this->checkAccess();
+        return $this->upRecord($id);
+    }
+    
+    function postDown($id) {
+        $this->checkAccess();
+        return $this->downRecord($id);
     }
     
     private function checkAccess() {

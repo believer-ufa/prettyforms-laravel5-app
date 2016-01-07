@@ -20,6 +20,7 @@ class Articles extends Migration {
 			$table->string('keywords');
 			$table->text('text');
 			$table->integer('user_id'); $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+			$table->integer('order');
 			$table->timestamps();
             $table->softDeletes();
 		});

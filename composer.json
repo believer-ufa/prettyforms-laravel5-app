@@ -5,8 +5,7 @@
 	"license": "MIT",
 	"type": "project",
 	"require": {
-		"laravel/framework": "5.0.*",
-		"believer-ufa/prettyforms-laravel": "~0.2"
+		"laravel/framework": "5.0.*"
 	},
 	"require-dev": {
         "barryvdh/laravel-ide-helper": "~2.0",
@@ -19,7 +18,8 @@
 			"database"
 		],
 		"psr-4": {
-			"App\\": "app/"
+			"App\\": "app/",
+			"PrettyFormsLaravel\\" : "vendor-static/prettyforms-laravel/src/"
 		}
 	},
 	"autoload-dev": {
