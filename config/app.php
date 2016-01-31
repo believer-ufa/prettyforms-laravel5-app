@@ -146,7 +146,7 @@ return [
 		'App\Providers\RouteServiceProvider',
         
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
-        'Illuminate\Html\HtmlServiceProvider',
+        'Collective\Html\HtmlServiceProvider',
         'PrettyFormsLaravel\ServiceProvider',
         'DaveJamesMiller\Breadcrumbs\ServiceProvider',
 
@@ -198,8 +198,8 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
         
-        'Form'        => 'Illuminate\Html\FormFacade',
-        'HTML'        => 'Illuminate\Html\HtmlFacade',
+        'Form'        => 'Collective\Html\FormFacade',
+        'HTML'        => 'Collective\Html\HtmlFacade',
         'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
 
 	],

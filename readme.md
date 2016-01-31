@@ -17,9 +17,15 @@ Install all the dependencies the application through the Composer:
 composer install
 ```
 
+Create new empty database and run migrations
+```bash
+touch storage/database.sqlite
+php artisan migrate
+```
+
 Finally, start the test application and start to study it:
 ```bash
-./artisan serve
+php artisan serve
 ```
 
 
@@ -40,6 +46,12 @@ sudo apt-get install -y php5-sqlite
 Установите все зависимости приложения через Composer:
 ```bash
 composer install
+```
+
+Создайте пустую SQLite базу данных и примените миграции
+```bash
+touch storage/database.sqlite
+php artisan migrate
 ```
 
 И, наконец, запустите тестовое приложение и начинайте его изучение:
