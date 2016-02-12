@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Eloquent\Model;
+use function PrettyFormsLaravel\param;
 
 Breadcrumbs::register('home', function($breadcrumbs)
 {
@@ -55,7 +56,7 @@ foreach($breadcrumbs_routes as $route_name => $route_info) {
 	// Главная страница объекта
 	Breadcrumbs::register($route_name, function($breadcrumbs, $parent_object = null) use ($route_name, $route_info, $breadcrumbs_routes) {
 
-        
+
         // Если родительский объект - это не модель, значит попытаемся сделать его моделью
         if (!is_null($parent_object) AND !$parent_object instanceof Model) {
             if (!isset($route_info['model'])) {
@@ -63,14 +64,14 @@ foreach($breadcrumbs_routes as $route_name => $route_info) {
             }
             $parent_object = $route_info['model']::find($parent_object);
         }
-        
+
         $title_str = is_callable($route_info['title'])
             ? $route_info['title']($parent_object)
             : $route_info['title'];
-        
+
 
         if ($parent_object instanceof Model) {
-            
+
             if (isset($route_info['top_relation'])) {
                 $top_relation = $route_info['top_relation'];
                 $breadcrumbs->parent($route_info['parent'], $parent_object->$top_relation);
@@ -114,7 +115,7 @@ foreach($breadcrumbs_routes as $route_name => $route_info) {
                     // страницу создания объекта, следовательно, номер родительского
                     // объекта уже был передан в URL и по правилам должен идти вторым номером
                     // поэтому создадим родительскую модель на основе второго параметра в запросе
-                    $parent_object = $route_info['model']::find(pf_param('two'));
+                    $parent_object = $route_info['model']::find(param('two'));
                 }
 
                 $breadcrumbs->parent($route_name, $parent_object);

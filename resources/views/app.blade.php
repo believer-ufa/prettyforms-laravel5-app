@@ -10,7 +10,7 @@
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
-    
+
     <style>
         h3 {
             margin: 30px 0;
@@ -68,34 +68,34 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                
-                @if ($messages = pf_display_messages())
+
+                @if ($messages = PrettyFormsLaravel\display_messages())
                     {!! $messages !!}
                 @endif
 
                 <?php
                 $breadcrumbs_hidden = App::make('params')->breadcrumbs_hidden;
                 $route_name = Route::getCurrentRoute()->getName();
-                
+
                 // Если текущий роут не находится в списке скрытых крошек, попробуем отобразить крошки
                 if ($route_name AND ! in_array($route_name, $breadcrumbs_hidden)) {
                     echo Breadcrumbs::renderIfExists();
-                } ?>                
+                } ?>
 
                 @yield('content')
             </div>
         </div>
     </div>
-    
+
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    
+
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/0.5.0/sweet-alert.css" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/0.5.0/sweet-alert.min.js"></script>
 
     <link href="{{ asset('/bower/prettyforms/prettyforms.css', true) }}" rel="stylesheet">
 	<script src="{{ asset('/bower/prettyforms/prettyforms.js', true) }}"></script>
-    
+
     <script>
         $.ajaxSetup({
           headers: {

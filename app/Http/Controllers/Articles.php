@@ -1,7 +1,9 @@
 <?php namespace App\Http\Controllers;
 
 use App\Article;
-use Illuminate\Http\Request;
+use Auth;
+use Request;
+use function PrettyFormsLaravel\param;
 
 class Articles extends Controller {
 
@@ -12,34 +14,39 @@ class Articles extends Controller {
 
     protected $_model_name = 'App\Article';
     protected $_form_params = [ 'order' ];
-    protected $fields = [
-        'title'     => [
-            'tag'        => 'input',
-            'label'      => 'Название',
-            'attributes' => ['data-validation' => 'notempty'],
-        ],
-        'description'     => [
-            'tag'        => 'input',
-            'label'      => 'Описание',
-            'desc'       => 'Краткое описание статьи',
-        ],
-        'keywords'     => [
-            'tag'        => 'input',
-            'label'      => 'Ключевые слова',
-            'desc'       => 'Ключевые слова, хараектирующие статью',
-        ],
-        'text'    => [
-            'tag'        => 'editor',
-            'label'      => 'Текст статьи',
-        ],
-        'user_id'    => [ 'tag' => 'hidden' ],
-    ];
+
+    public function getFormFields()
+    {
+        return [
+            'title'     => [
+                'tag'        => 'input',
+                'label'      => 'Название',
+                'attributes' => ['data-validation' => 'notempty'],
+            ],
+            'description'     => [
+                'tag'        => 'input',
+                'label'      => 'Описание',
+                'desc'       => 'Краткое описание статьи',
+            ],
+            'keywords'     => [
+                'tag'        => 'input',
+                'label'      => 'Ключевые слова',
+                'desc'       => 'Ключевые слова, хараектирующие статью',
+            ],
+            'text'    => [
+                'tag'        => 'editor',
+                'label'      => 'Текст статьи',
+            ],
+            'user_id'    => [ 'tag' => 'hidden' ],
+        ];
+    }
 
     /**
      * Возвращает тексты, которые будут использоваться в генерации форм и сообщениях для объекта.
      * Метод не обязательно создавать, по умолчанию класс будет использовать стандартные общие сообщения и заголовки
      */
-    protected function getStrings($model) {
+    protected function getStrings($model)
+    {
         return [
             'add'  => [
                 'caption' => 'Новая статья',
@@ -51,57 +58,61 @@ class Articles extends Controller {
             ],
         ];
     }
-    
+
     /**
      * Правила валидации для текущей модели
      * @param object $model Модель, с которой мы работаем
      * @return array
      */
-    protected function getValidationRules($model) {
+    protected function getValidationRules($model)
+    {
         return [
             'title' => 'required',
             'text'  => 'required',
         ];
     }
-    
-    function getHomeLink($model) {
+
+    function getHomeLink($model)
+    {
         if ($model->exists AND ! $model->trashed()) {
             return '/articles/show/' . $model->id;
         } else {
             return '/articles';
         }
     }
-    
-    public function getIndex() {
+
+    public function getIndex()
+    {
         $view = view('articles');
         $view->articles = Article::withTrashed()->orderBy('order')->paginate(15);
         return $view;
     }
-    
-    public function getShow() {
+
+    public function getShow()
+    {
         $view = view('articles.show');
-        $view->article = Article::findOrFail(pf_param());
+        $view->article = Article::findOrFail(param());
         return $view;
     }
-    
-    public function anySave(Request $request)
+
+    public function anySave()
 	{
         $this->checkAccess();
-        
-        if (\Request::wantsJson() AND \Request::isMethod('post')) {
-            return $this->save($request, pf_param(), [
-                'user_id' => \Auth::user()->id
+
+        if (Request::wantsJson() AND Request::isMethod('post')) {
+            return $this->save(param(), [
+                'user_id' => Auth::user()->id
             ]);
         } else {
-            return $this->generateForm(pf_param());
+            return $this->generateForm(param());
         }
 	}
-    
+
     public function postDelete() {
         $this->checkAccess();
         return $this->defaultDeleteLogic();
     }
-    
+
     function postRestore() {
         $this->checkAccess();
         return $this->defaultRestoreLogic();
@@ -111,25 +122,25 @@ class Articles extends Controller {
         $this->checkAccess();
         return $this->defaultForceDeleteLogic();
     }
-    
+
     function postUp($id) {
         $this->checkAccess();
         return $this->upRecord($id);
     }
-    
+
     function postDown($id) {
         $this->checkAccess();
         return $this->downRecord($id);
     }
-    
+
     private function checkAccess() {
-        $article_id = pf_param();
+        $article_id = param();
         if ($article_id) {
             $article = Article::withTrashed()->findOrFail($article_id);
-            if ($article->user_id != \Auth::user()->id) {
+            if ($article->user_id != Auth::user()->id) {
                 abort(403, 'Вы не имеете права редактировать чужую статью');
             }
         }
     }
-    
+
 }

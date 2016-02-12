@@ -2,6 +2,7 @@
 
 use App\User;
 use Illuminate\Http\Request;
+use function PrettyFormsLaravel\param;
 
 class Users extends Controller {
 
@@ -11,56 +12,51 @@ class Users extends Controller {
 	}
 
     protected $_model_name = 'App\User';
-    protected $fields = [
-        'name'     => [
-            'tag'        => 'input',
-            'label'      => 'Имя',
-            'attributes' => ['data-validation' => 'notempty'],
-        ],
-        'email'    => [
-            'tag'        => 'input',
-            'label'      => 'E-Mail',
-            'attributes' => ['data-validation' => 'notempty'],
-        ],
-        'password'    => [
-            'tag'        => 'input',
-            'label'      => 'Пароль',
-            'attributes' => ['data-validation' => 'notempty'],
-        ],
-        'its_man'    => [
-            'tag'                   => 'select',
-            'label'                 => 'Пол',
-            'options' => [
-                '1' => 'Мужчина',
-                '0' => 'Женщина'
-            ],
-        ],
-        'roles'    => [
-            'tag'                   => 'checkbox-multi',
-            'label'                 => 'Роли',
-            'model'                 => 'App\Role',
-            'display_as'            => 'name',
-        ],
-    ];
 
-    protected $fields_edit = [
-        'name'     => [
-            'tag'        => 'input',
-            'label'      => 'Имя',
-            'attributes' => ['data-validation' => 'notempty'],
-        ],
-        'email'    => [
-            'tag'        => 'input',
-            'label'      => 'E-Mail',
-            'attributes' => ['data-validation' => 'notempty'],
-        ],
-        'roles'    => [
-            'tag'                   => 'checkbox-multi',
-            'label'                 => 'Роли',
-            'model'                 => 'App\Role',
-            'display_as'            => 'name',
-        ],
-    ];
+    public function getFormFields()
+    {
+        return [
+            'name' => [
+                'tag'        => 'input',
+                'label'      => 'Имя',
+                'attributes' => ['data-validation' => 'notempty'],
+            ],
+            'email' => [
+                'tag'        => 'input',
+                'label'      => 'E-Mail',
+                'attributes' => ['data-validation' => 'notempty'],
+            ],
+            'password' => [
+                'tag'        => 'input',
+                'label'      => 'Пароль',
+                'attributes' => ['data-validation' => 'notempty'],
+                'only'       => 'add',
+            ],
+            'its_man' => [
+                'tag'        => 'select',
+                'label'      => 'Пол',
+                'options' => [
+                    '1' => 'Мужчина',
+                    '0' => 'Женщина'
+                ],
+            ],
+            'roles' => [
+                'tag'          => 'checkbox-multi',
+                'label'        => 'Роли',
+                'options'      => function($user) {
+                    $items = [];
+                    foreach(App\Role::orderBy('name')->get() as $role) {
+                        $items[] = [
+                            'value' => $role->id,
+                            'text'  => $role->name,
+                            'desc'  => $role->desc,
+                        ];
+                    }
+                    return $items;
+                },
+            ],
+        ];
+   }
 
     /**
      * Возвращает тексты, которые будут использоваться в генерации форм и сообщениях для объекта.
@@ -78,7 +74,7 @@ class Users extends Controller {
             ],
         ];
     }
-    
+
     /**
      * Правила валидации для текущей модели
      * @param object $model Модель, с которой мы работаем
@@ -98,12 +94,12 @@ class Users extends Controller {
         $view->users = User::withTrashed()->paginate(15);
 		return $view;
 	}
-    
+
     function anySave(Request $request) {
         if (\Request::wantsJson() AND \Request::isMethod('post'))
         {
-            $user_id = pf_param();
-            
+            $user_id = param();
+
             if ($user_id) {
                 // При редактировании пользователя используем стандартную логику сохранения
                 return $this->save($request, $user_id);
@@ -116,12 +112,12 @@ class Users extends Controller {
                     $user->save();
                 });
             }
-            
+
         } else {
             return $this->generateForm(pf_param());
         }
     }
-    
+
     function postDelete() {
         return $this->defaultDeleteLogic();
     }

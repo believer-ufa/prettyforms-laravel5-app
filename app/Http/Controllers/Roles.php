@@ -11,27 +11,31 @@ class Roles extends Controller {
 	}
 
     protected $_model_name = 'App\Role';
-    protected $fields = [
-        'name'     => [
-            'tag'        => 'input',
-            'label'      => 'Имя',
-            'attributes' => ['data-validation' => 'notempty'],
-        ],
-        'users'    => [
-            'tag'                   => 'search-multi',
-            'label'                 => 'Пользователи',
-            'model'                 => 'App\User',
-            'ajax_url'              => '/search/users',
-            'ajax_param_name'       => 'name',
-            'ajax_data_type'        => 'json',
-            'display_as'            => 'name',
-            'desc'                  => 'Укажите пользователей, которые будут связаны с данной ролью',
-        ],
-        'description'    => [
-            'tag'        => 'editor',
-            'label'      => 'Описание',
-        ],
-    ];
+
+    public function getFormFields()
+    {
+        return [
+            'name'     => [
+                'tag'        => 'input',
+                'label'      => 'Имя',
+                'attributes' => ['data-validation' => 'notempty'],
+            ],
+            'users'    => [
+                'tag'                   => 'search-multi',
+                'label'                 => 'Пользователи',
+                'model'                 => 'App\User',
+                'ajax_url'              => '/search/users',
+                'ajax_param_name'       => 'name',
+                'ajax_data_type'        => 'json',
+                'display_as'            => 'name',
+                'desc'                  => 'Укажите пользователей, которые будут связаны с данной ролью',
+            ],
+            'description'    => [
+                'tag'        => 'editor',
+                'label'      => 'Описание',
+            ],
+        ];
+    }
 
     /**
      * Возвращает тексты, которые будут использоваться в генерации форм и сообщениях для объекта.
@@ -49,7 +53,7 @@ class Roles extends Controller {
             ],
         ];
     }
-    
+
     /**
      * Правила валидации для текущей модели
      * @param object $model Модель, с которой мы работаем
@@ -58,7 +62,7 @@ class Roles extends Controller {
     protected function getValidationRules($model) {
         $except = $model->exists ? ",{$model->id}" : '';
         return [
-            'name'           => 'required|max:45|unique:roles,name' . $except,
+            'name' => 'required|max:45|unique:roles,name' . $except,
         ];
     }
 
@@ -68,11 +72,11 @@ class Roles extends Controller {
         $view->roles = Role::paginate(15);
 		return $view;
 	}
-    
-    function anySave(Request $request) {
-        return $this->defaultSaveLogic($request);
+
+    function anySave() {
+        return $this->defaultSaveLogic();
     }
-    
+
     function postDelete() {
         return $this->defaultDeleteLogic();
     }
